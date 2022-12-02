@@ -71,13 +71,12 @@ import (
 {{- range .Solutions }}
 	"github.com/brandonc/advent2022/solutions/{{.Package}}"
 {{- end }}
-
-	"github.com/mitchellh/cli"
+	"github.com/brandonc/advent2022/solutions/solution"
 )
 
-var SolutionCommands = map[string]cli.CommandFactory{
+var SolutionCommands = map[string]solution.SolutionFactory{
 {{- range .Solutions }}
-	"{{.Number}}": {{.Package}}.Command,
+	"{{.Number}}": {{.Package}}.Factory,
 {{- end }}
 }
 `))

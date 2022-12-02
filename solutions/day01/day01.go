@@ -1,37 +1,26 @@
 package day01
 
 import (
-	"os"
+	"io"
 	"sort"
 
 	"github.com/brandonc/advent2022/internal/input"
 	"github.com/brandonc/advent2022/internal/maths"
 	"github.com/brandonc/advent2022/internal/ui"
-
-	"github.com/mitchellh/cli"
+	"github.com/brandonc/advent2022/solutions/solution"
 )
 
 type day01 struct{}
 
-func Command() (cli.Command, error) {
-	return day01{}, nil
+var _ solution.Solver = day01{}
+
+// Factory must exist for codegen
+func Factory() solution.Solver {
+	return day01{}
 }
 
-func (d day01) Help() string {
-	return "Day 1 solution"
-}
-
-func (d day01) Synopsis() string {
-	return "Day 1 solution"
-}
-
-func (d day01) Run(args []string) int {
-	fs, err := os.Open(args[0])
-	if ui.Die(err) {
-		return 1
-	}
-
-	scanner := input.NewIntScanner(fs)
+func (d day01) Solve(reader io.Reader) (int, int, error) {
+	scanner := input.NewIntScanner(reader)
 
 	elfCalories := make([]int, 0)
 	var calories int
@@ -51,13 +40,9 @@ func (d day01) Run(args []string) int {
 
 	ui.Debugf("There are %d elves", len)
 
-	ui.AnswerInt(elfCalories[len-1], "Most calories")
-
 	if len < 3 {
 		panic("assertion failed!")
 	}
 
-	ui.AnswerInt(maths.SumSlice(elfCalories[len-3:len]), "Top 3 sum")
-
-	return 0
+	return elfCalories[len-1], maths.SumSlice(elfCalories[len-3 : len]), nil
 }

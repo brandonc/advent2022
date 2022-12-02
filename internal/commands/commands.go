@@ -3,10 +3,9 @@ package commands
 
 import (
 	"github.com/brandonc/advent2022/solutions/day01"
-
-	"github.com/mitchellh/cli"
+	"github.com/brandonc/advent2022/solutions/solution"
 )
 
-var SolutionCommands = map[string]cli.CommandFactory{
-	"1": day01.Command,
+var SolutionCommands = map[string]solution.SolutionFactory{
+	"1": day01.Factory,
 }
