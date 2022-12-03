@@ -9,8 +9,6 @@ import (
 
 type day02 struct{}
 
-var _ solution.Solver = day02{}
-
 const (
 	rock     = 1
 	paper    = 2

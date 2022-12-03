@@ -12,8 +12,6 @@ import (
 
 type day01 struct{}
 
-var _ solution.Solver = day01{}
-
 // Factory must exist for codegen
 func Factory() solution.Solver {
 	return day01{}
