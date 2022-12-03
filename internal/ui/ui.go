@@ -1,6 +1,7 @@
 package ui
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"strconv"
@@ -15,6 +16,13 @@ func Die(err error) bool {
 		return true
 	}
 	return false
+}
+
+func Assert(expr bool, description string) {
+	if !expr {
+		Die(errors.New(description))
+		os.Exit(1)
+	}
 }
 
 func Debug(message string) {
