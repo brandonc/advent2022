@@ -1,4 +1,4 @@
-// day03: The goal is to find common characters within a string representing the contents
+// Package day03 finds common characters within a string representing the contents
 // of a bag. Each item is represented by the bytes a-z or A-Z. Each line represents a single bag.
 //
 // The first answer is derived by finding the items that are common in the first and second half
