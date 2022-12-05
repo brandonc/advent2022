@@ -38,8 +38,6 @@ func main() {
 	}
 
 	ui.Answer(answer1, answer2)
-
-	ui.Die(err)
 	os.Exit(0)
 }
 
