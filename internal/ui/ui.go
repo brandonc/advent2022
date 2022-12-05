@@ -51,7 +51,7 @@ func leftAlign(v, other string) string {
 	}
 }
 
-func Answer(first, second int) {
+func answerInt(first, second int) {
 	a1 := strconv.FormatInt(int64(first), 10)
 	a2 := strconv.FormatInt(int64(second), 10)
 
@@ -69,4 +69,11 @@ func Answer(first, second int) {
 	colorstring.Printf("[yellow]|%s+%s|\n", dashesA1, dashesA2)
 	colorstring.Printf("[yellow]|[cyan]%s[yellow]|[cyan]%s[yellow]|\n", leftAlign(a1, "Part 1"), leftAlign(a2, "Part 2"))
 	colorstring.Printf("[yellow]+%s+%s+\n", dashesA1, dashesA2)
+}
+
+func Answer(first, second interface{}) {
+	switch first.(type) {
+	case int, int64:
+		answerInt(first.(int), second.(int))
+	}
 }

@@ -17,7 +17,7 @@ func Factory() solution.Solver {
 	return day01{}
 }
 
-func (d day01) Solve(reader io.Reader) (int, int, error) {
+func (d day01) Solve(reader io.Reader) (interface{}, interface{}, error) {
 	scanner := input.NewIntScanner(reader)
 
 	elfCalories := make([]int, 0)

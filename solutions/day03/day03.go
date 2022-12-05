@@ -80,7 +80,7 @@ func scoreItem(a item) int {
 	return 0 // never
 }
 
-func (d day03) Solve(input io.Reader) (int, int, error) {
+func (d day03) Solve(input io.Reader) (interface{}, interface{}, error) {
 	scanner := bufio.NewScanner(input)
 
 	var index = 0

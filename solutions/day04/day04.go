@@ -53,7 +53,7 @@ func parseRanges(rangesRaw string) (boundary, boundary) {
 	return parseRange(split[0]), parseRange(split[1])
 }
 
-func (d day04) Solve(reader io.Reader) (int, int, error) {
+func (d day04) Solve(reader io.Reader) (interface{}, interface{}, error) {
 	scanner := bufio.NewScanner(reader)
 
 	var countContains, countOverlaps int

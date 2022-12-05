@@ -110,7 +110,7 @@ func (g game) scoreSecond() int {
 	}
 }
 
-func (d day02) Solve(reader io.Reader) (int, int, error) {
+func (d day02) Solve(reader io.Reader) (interface{}, interface{}, error) {
 	scanner := bufio.NewScanner(reader)
 
 	guideScore := 0
