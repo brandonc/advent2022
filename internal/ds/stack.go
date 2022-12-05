@@ -33,13 +33,8 @@ func (s *Stack) PopN(n int) []string {
 		panic(fmt.Sprintf("cannot pop %d items from stack len %d", n, len(s.array)))
 	}
 
-	newArray := make([]string, len(s.array)-n)
 	result := s.array[len(s.array)-n:]
-
-	if copied := copy(newArray, s.array); copied != len(s.array)-n {
-		panic(fmt.Sprintf("expected to copy %d items but got %d", len(s.array)-n, copied))
-	}
-	s.array = newArray
+	s.array = s.array[:len(s.array)-n] // subject to memory leak
 	return result
 }
 
@@ -53,8 +48,7 @@ func (s *Stack) PushN(items []string) {
 
 func (s *Stack) Unshift(item string) {
 	if len(s.array) == 0 {
-		s.array = append(s.array, item)
-		return
+		s.Push(item)
 	}
 
 	newArray := make([]string, len(s.array)+1)
