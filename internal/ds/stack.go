@@ -49,6 +49,7 @@ func (s *Stack) PushN(items []string) {
 func (s *Stack) Unshift(item string) {
 	if len(s.array) == 0 {
 		s.Push(item)
+		return
 	}
 
 	newArray := make([]string, len(s.array)+1)
