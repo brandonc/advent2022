@@ -31,12 +31,12 @@ func Factory() solution.Solver {
 	return day08{}
 }
 
-// view defines a function that can traverses a direction beginning at startX, startY
+// traversal defines a function that can traverses a direction beginning at startX, startY
 // and calls a given function for each tree height found in that direction. Return false
 // from the callback to break.
 type traversal func(startX, startY int, grid [][]int, cb func(h int) bool)
 
-// north implements viewing north
+// north implements traversing north
 var north traversal = func(startX, startY int, grid [][]int, cb func(h int) bool) {
 	for yy := startY - 1; yy >= 0; yy-- {
 		if !cb(grid[yy][startX]) {
@@ -45,7 +45,7 @@ var north traversal = func(startX, startY int, grid [][]int, cb func(h int) bool
 	}
 }
 
-// south implements viewing south
+// south implements traversing south
 var south traversal = func(startX, startY int, grid [][]int, cb func(h int) bool) {
 	for yy := startY + 1; yy < len(grid); yy++ {
 		if !cb(grid[yy][startX]) {
@@ -54,7 +54,7 @@ var south traversal = func(startX, startY int, grid [][]int, cb func(h int) bool
 	}
 }
 
-// east implements viewing east
+// east implements traversing east
 var east traversal = func(startX, startY int, grid [][]int, cb func(h int) bool) {
 	for xx := startX + 1; xx < len(grid); xx++ {
 		if !cb(grid[startY][xx]) {
@@ -63,7 +63,7 @@ var east traversal = func(startX, startY int, grid [][]int, cb func(h int) bool)
 	}
 }
 
-// west implements viewing west
+// west implements traversing west
 var west traversal = func(startX, startY int, grid [][]int, cb func(h int) bool) {
 	for xx := startX - 1; xx >= 0; xx-- {
 		if !cb(grid[startY][xx]) {
@@ -72,7 +72,7 @@ var west traversal = func(startX, startY int, grid [][]int, cb func(h int) bool)
 	}
 }
 
-// tallest returns the tallest tree in a direction
+// tallest returns the tallest tree in a traversal
 func tallest(x, y int, grid [][]int, look traversal) int {
 	max := 0
 	look(x, y, grid, func(h int) bool {
@@ -84,7 +84,7 @@ func tallest(x, y int, grid [][]int, look traversal) int {
 	return max
 }
 
-// visible returns the number of trees visible in a direction
+// visible returns the number of trees visible in a traversal
 func visible(x, y int, grid [][]int, look traversal) int {
 	height := grid[y][x]
 	score := 0
