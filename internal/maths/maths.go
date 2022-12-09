@@ -7,3 +7,10 @@ func SumSlice(slice []int) int {
 	}
 	return r
 }
+
+func AbsInt(i int) int {
+	if i < 0 {
+		return i * -1
+	}
+	return i
+}
