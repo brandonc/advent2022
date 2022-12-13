@@ -89,7 +89,7 @@ func solve(monkeys []*monkey, rounds, relief int) int {
 	return monkeys[len(monkeys)-1].inspected * monkeys[len(monkeys)-2].inspected
 }
 
-func (d day11) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day11) Solve(reader io.Reader) (any, any, error) {
 	data, err := ioutil.ReadAll(reader)
 	if err != nil {
 		return 0, 0, fmt.Errorf("could not read input: %w", err)

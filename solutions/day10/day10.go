@@ -79,7 +79,7 @@ func (d *day10) beginExecuting(instr string) {
 	}
 }
 
-func (d day10) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day10) Solve(reader io.Reader) (any, any, error) {
 	signalStrengths := make([]int, 0, 5)
 	scanner := bufio.NewScanner(reader)
 	image, err := os.Create("image.txt")

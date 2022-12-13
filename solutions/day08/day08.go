@@ -135,7 +135,7 @@ func bestScenicScore(grid [][]int) int {
 	return result
 }
 
-func (d day08) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day08) Solve(reader io.Reader) (any, any, error) {
 	scanner := bufio.NewScanner(reader)
 	ui.Assert(scanner.Scan(), "no input")
 

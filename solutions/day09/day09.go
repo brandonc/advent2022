@@ -107,7 +107,7 @@ func Factory() solution.Solver {
 	return day09{}
 }
 
-func (d day09) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day09) Solve(reader io.Reader) (any, any, error) {
 	scanner := bufio.NewScanner(reader)
 
 	twoKnot := rope{

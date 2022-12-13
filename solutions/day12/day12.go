@@ -97,7 +97,7 @@ func (n navigation) neighbors(p position) []position {
 	return result
 }
 
-func (d day12) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day12) Solve(reader io.Reader) (any, any, error) {
 	scanner := bufio.NewScanner(reader)
 	nav := navigation{
 		heightMap: make([][]byte, 0, 8),

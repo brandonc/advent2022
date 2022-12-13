@@ -120,7 +120,7 @@ func (p packet) comparePacketNext(other packet) *bool {
 	return p[1:].comparePacketNext(other[1:])
 }
 
-func (d day13) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day13) Solve(reader io.Reader) (any, any, error) {
 	scanner := bufio.NewScanner(reader)
 
 	dividerPacket1 := &packet{

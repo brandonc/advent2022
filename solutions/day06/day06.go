@@ -75,7 +75,7 @@ func (d day06) findMarker(data []byte, size int) (int, error) {
 	return begin, nil
 }
 
-func (d day06) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day06) Solve(reader io.Reader) (any, any, error) {
 	data, err := ioutil.ReadAll(reader)
 	if err != nil {
 		return 0, 0, fmt.Errorf("could not copy input to buffer: %w", err)

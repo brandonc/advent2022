@@ -99,7 +99,7 @@ func (d *day07) processCommand(command string) {
 	}
 }
 
-func (d day07) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day07) Solve(reader io.Reader) (any, any, error) {
 	scanner := bufio.NewScanner(reader)
 	for scanner.Scan() {
 		line := scanner.Text()

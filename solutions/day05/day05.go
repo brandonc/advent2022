@@ -41,7 +41,7 @@ func topmostCrates(s []ds.Stack) string {
 	return a.String()
 }
 
-func (d day05) Solve(reader io.Reader) (interface{}, interface{}, error) {
+func (d day05) Solve(reader io.Reader) (any, any, error) {
 	// First, read the drawing of the stacks of crates
 	scanner := bufio.NewScanner(reader)
 	for scanner.Scan() {
