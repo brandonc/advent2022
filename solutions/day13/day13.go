@@ -96,21 +96,11 @@ func comparePacketNext(list1, list2 packet) *bool {
 		return result(false)
 	}
 
-	leftItem := list1[0]
-	rightItem := list2[0]
+	leftItem, leftItemType := list1[0], reflect.TypeOf(list1[0]).Kind()
+	rightItem, rightItemType := list2[0], reflect.TypeOf(list2[0]).Kind()
 
-	leftItemType := reflect.TypeOf(leftItem).Kind()
-	rightItemType := reflect.TypeOf(rightItem).Kind()
-
-	// Both items are slices
-	if leftItemType == reflect.Slice && rightItemType == reflect.Slice {
-		if result := comparePacketNext(leftItem.(packet), rightItem.(packet)); result != nil {
-			return result
-		}
-	}
-
-	// Mixed comparison. Wrap item and recompare
-	if (leftItemType == reflect.Slice && rightItemType != reflect.Slice) || (leftItemType != reflect.Slice && rightItemType == reflect.Slice) {
+	// Slice comparison
+	if leftItemType == reflect.Slice || rightItemType == reflect.Slice {
 		if result := comparePacketNext(ensurePacket(leftItem, leftItemType), ensurePacket(rightItem, rightItemType)); result != nil {
 			return result
 		}
