@@ -21,7 +21,7 @@ func Factory() solution.Solver {
 }
 
 // packet is a list that contains either more packets or integers
-type packet []interface{}
+type packet []any
 
 func parsePacket(raw string) (packet, int) {
 	ui.Assert(len(raw) > 0 && raw[0] == '[', fmt.Sprintf("Expected list, got %s", raw))
@@ -67,41 +67,41 @@ func result(r bool) *bool {
 	return &r
 }
 
-func compare(packet1, packet2 packet) bool {
-	result := comparePacketNext(packet1, packet2)
-	ui.Answer(result != nil, "packets should be comparable")
-	return *result
-}
-
-func ensurePacket(item interface{}, t reflect.Kind) packet {
+func ensurePacket(item any, t reflect.Kind) packet {
 	if t != reflect.Slice {
 		return packet{item}
 	}
 	return item.(packet)
 }
 
-func comparePacketNext(list1, list2 packet) *bool {
-	if len(list1) == 0 && len(list2) == 0 {
+func (p packet) compare(other packet) bool {
+	result := p.comparePacketNext(other)
+	ui.Assert(result != nil, "packets should be comparable")
+	return *result
+}
+
+func (p packet) comparePacketNext(other packet) *bool {
+	if len(p) == 0 && len(other) == 0 {
 		// No more items to compare, signal that more items need to be compared
 		return nil
 	}
 
-	if len(list1) == 0 {
+	if len(p) == 0 {
 		// Left side ran out of items
 		return result(true)
 	}
 
-	if len(list2) == 0 {
+	if len(other) == 0 {
 		// Right side ran out of items
 		return result(false)
 	}
 
-	leftItem, leftItemType := list1[0], reflect.TypeOf(list1[0]).Kind()
-	rightItem, rightItemType := list2[0], reflect.TypeOf(list2[0]).Kind()
+	leftItem, leftItemType := p[0], reflect.TypeOf(p[0]).Kind()
+	rightItem, rightItemType := other[0], reflect.TypeOf(other[0]).Kind()
 
 	// Slice comparison
 	if leftItemType == reflect.Slice || rightItemType == reflect.Slice {
-		if result := comparePacketNext(ensurePacket(leftItem, leftItemType), ensurePacket(rightItem, rightItemType)); result != nil {
+		if result := ensurePacket(leftItem, leftItemType).comparePacketNext(ensurePacket(rightItem, rightItemType)); result != nil {
 			return result
 		}
 	}
@@ -117,7 +117,7 @@ func comparePacketNext(list1, list2 packet) *bool {
 	}
 
 	// Compare next item
-	return comparePacketNext(list1[1:], list2[1:])
+	return p[1:].comparePacketNext(other[1:])
 }
 
 func (d day13) Solve(reader io.Reader) (interface{}, interface{}, error) {
@@ -144,7 +144,7 @@ func (d day13) Solve(reader io.Reader) (interface{}, interface{}, error) {
 		ui.Assert(scanner.Scan(), "Expected more input")
 		packet2, _ := parsePacket(scanner.Text())
 
-		if compare(packet1, packet2) {
+		if packet1.compare(packet2) {
 			part1 += index + 1
 		}
 
@@ -157,7 +157,7 @@ func (d day13) Solve(reader io.Reader) (interface{}, interface{}, error) {
 	}
 
 	sort.Slice(allPackets, func(i, j int) bool {
-		return compare(*allPackets[i], *allPackets[j])
+		return (*allPackets[i]).compare(*allPackets[j])
 	})
 
 	part2 := 0
