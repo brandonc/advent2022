@@ -1,3 +1,6 @@
+// Package day11 is a simulation of monkeys tossing items. It's too dumb to describe fully
+// but basically it's about managing very large numbers by exploiting the fact that
+// comparing them is only done with prime numbers.
 package day11
 
 import (

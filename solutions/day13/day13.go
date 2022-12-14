@@ -1,3 +1,20 @@
+// Package day13 presents pairs of data packets represented as lists of integers that may also contain
+// lists of integers. The lists are compared against each other and said to be either in
+// order or out of order. The comparison works item by item and follows some simple rules:
+//
+//  1. If both items are lists, compare each item in that list until:
+//
+//  2. If one item is not a list, make it a single-item list and compare again
+//
+//  3. If the left item is less than the right item, the pair is in the right order
+//
+//  4. If the left item is greater than the right item, the pair is out of order
+//
+//  5. If they are the same, move to the next item in their respective lists
+//
+// Part 1 is the number of pairs that are in order, summed.
+// Part 2 introduces an extra pair outside of the input, all the packets are sorted
+// using the same rules, and the indices of the extra pair is multiplied together.
 package day13
 
 import (

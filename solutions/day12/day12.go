@@ -1,3 +1,12 @@
+// Package day12 is a pathfinding problem, along a map of different height tiles, indicated a-z.
+// The path may only follow a course that allows a change in height of +1 at a time, moving
+// north, south, east, or west.
+//
+// Part 1 is the fewest number of steps it takes to get from start to end
+// Part 2 is the fewest number of steps it takes to get from any lowest point start to end
+//
+// The approach is to use the A* algorithm to explore all available movement options, scoring
+// each tile with the fewest number of steps it took to get there.
 package day12
 
 import (
