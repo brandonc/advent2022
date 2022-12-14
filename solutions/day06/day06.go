@@ -10,7 +10,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 
 	"github.com/brandonc/advent2022/internal/ui"
 	"github.com/brandonc/advent2022/solutions/solution"
@@ -76,7 +75,7 @@ func (d day06) findMarker(data []byte, size int) (int, error) {
 }
 
 func (d day06) Solve(reader io.Reader) (any, any, error) {
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return 0, 0, fmt.Errorf("could not copy input to buffer: %w", err)
 	}

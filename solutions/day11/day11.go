@@ -3,7 +3,6 @@ package day11
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"sort"
 	"strings"
 
@@ -90,7 +89,7 @@ func solve(monkeys []*monkey, rounds, relief int) int {
 }
 
 func (d day11) Solve(reader io.Reader) (any, any, error) {
-	data, err := ioutil.ReadAll(reader)
+	data, err := io.ReadAll(reader)
 	if err != nil {
 		return 0, 0, fmt.Errorf("could not read input: %w", err)
 	}
